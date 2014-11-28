@@ -21,8 +21,10 @@ LOCAL_C_INCLUDES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
 LOCAL_C_INCLUDES += external/iproute2/include
 LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 LOCAL_CFLAGS := -DFEATURE_PRIO
-else
+else ifneq ($(TARGET_ARCH),arm64)
 LOCAL_C_INCLUDES := $(KERNEL_HEADERS) external/iproute2/include
+else
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../include
 endif
 
 LOCAL_CFLAGS += -O2 -g -W -Wall -Wno-pointer-arith -Wno-sign-compare -Werror
